@@ -4,20 +4,20 @@
 
 ## Phase and Cohort: Flask Phase 4 050123 East
 
-## Description: This app will allow users to set up an appointment for a haircut at a selection of barbershops.
+## Description: This app will allow users to set up an appointment from a selection of barbers while having the possibility of changing details of the appointment.
 
-![Screenshot 2024-02-12 104333](https://github.com/hihijazi/phase-4-flask-project-bookstore/assets/148264944/2b9ca23c-b32b-4c4c-816f-0cb3bf66ecff)
+![DBDiagram](https://cdn.discordapp.com/attachments/1213238971774275654/1213238987754577991/image.png?ex=65f4bfdb&is=65e24adb&hm=68ac3195a4af526a1015cfd3fabc9aa65f40741ff9c277cbea001ac7bfed9758&)
 
 ## MVP 
 ##CRUD 
 
-C. Add books, orders, and customers
+C. User will be able to create an appointment, an instance of a customer, and add a barber/haircut.
 
-R. Search books and orders
+R. User will be able to search for haircuts, barbers, and read appointments.
 
-U. Update books and orders 
+U. Users will be able to change customer's details, barber's details, haircut's details, and appointments time.
 
-D. Delete books 
+D. Users will be able to remove appointments, customers, haircuts, and barbers.
 
 
 
@@ -72,41 +72,55 @@ flask db upgrade head
 
 ## Many-to-many
 
-- Customer has many orders through books
-- Orders has many customerss through books
-- Books belong to orders, and a customer
+- Customers has many barbers through appointments
+- Barbers has many customers through appointments
+- Appointments belong to barber, and a customer
 
 ## Validations 
 
-Add validations to the `Books` model:
+Add validations to the `Barbers` model:
 
-- must have a name
+Add validations to the `Customers` model:
 
-Add validations to the `Orders` model:
-- must have a name
-- must have a price between 1 and 20
+Add validations to the `Haircuts` model:
+
+Add validations to the `Appointments` model:
+
 
 ## Controllers
 
 API routes RESTful conventions
 
 ```console
-GET    /books/              
-POST   /books/             
-GET    /books/:id           
-PATCH  /books/:id           
-DELETE /books/:id
+GET    /customers/              
+POST   /customers/             
+GET    /customers/:id           
+PATCH  /customers/:id           
+DELETE /customers/:id
 ```          
 
 ```console
-GET    /customer/             
-POST   /customer/
+GET    /barbers/              
+POST   /barbers/             
+GET    /barbers/:id           
+PATCH  /barbers/:id           
+DELETE /barbers/:id
 ```           
 
 ```console
-GET    /orders/:id         
-PATCH  /orders/:id         
-DELETE /orders/:id
+GET    /appointments/              
+POST   /appointments/             
+GET    /appointments/:id           
+PATCH  /appointments/:id           
+DELETE /appointments/:id
+```      
+
+```console
+GET    /haircuts/              
+POST   /haircuts/             
+GET    /haircuts/:id           
+PATCH  /haircuts/:id           
+DELETE /haircuts/:id
 ```      
 
 ## Serialize Rules

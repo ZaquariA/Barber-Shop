@@ -1,4 +1,18 @@
+.app_div {
+    background-image: url('https://cdn.discordapp.com/attachments/1214264641463656448/1214301739008663583/image.png?ex=65f89d9f&is=65e6289f&hm=2bfb48d220c5e73e02ea0dfcab8c78e77a6e1a966bec1f8267f3b135d8e22f23&');
+    margin: -.5em;
+}
+
 .title{
-    color: blue;
-    font-family: "Micro 5", sans-serif;
+    -webkit-text-stroke-width: .1px;
+    -webkit-text-stroke-color: black;
+    color: whitesmoke;
+    text-align: center;
+    margin-top: -10px;
+    font-size: 6em;
+    font-family: "Bruno Ace SC", sans-serif;
+}
+
+.barber {
+    padding-left: 1em;
 }

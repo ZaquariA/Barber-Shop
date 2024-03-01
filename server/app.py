@@ -90,7 +90,9 @@ def appointments():
             new_appointment = Appointment(
                 time=get_json['time'],
                 hc_notes=get_json['hc_notes'],
-                barber_id=get_json['barber_id']
+                barber_id=get_json['barber_id'],
+                customer_id=get_json['customer_id'],
+                haircut_id=get_json['haircut_id']
             )
             db.session.add(new_appointment)
             db.session.commit()

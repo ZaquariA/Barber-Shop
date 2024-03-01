@@ -1,14 +1,18 @@
-.app_div {
-
-    background-image: url('https://cdn.discordapp.com/attachments/1212789264509566986/1214291365694017616/longshot-front-dark-cropped.png?ex=65f893f6&is=65e61ef6&hm=4e1a99a08c25ecf74cac16f1c61908afc5b5742cfcb46803fa4d200800917d4b&'); main
-    margin: -.5em;
+html, body {
+    background-image: url('https://images-cdn.ubuy.co.in/634d06a9162ae7225245c1a3-ltlyh-7x5ft-black-brick-wall-backdrop.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    padding: 0;
 }
 
 .title {
+    margin-top: 0em;
     text-align: center;
     font-size: 8em;
     font-family: "Neonderthaw", sans-serif;
-    animation: neonEffect 1s ease-in-out infinite alternate;
+    animation: neonEffect 2s ease-in-out infinite alternate;
   }
   
   @keyframes neonEffect {
@@ -21,18 +25,22 @@
       text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00; /* Neon glow effect */
     }
   }
-/* .title{
-     -webkit-text-stroke-width: .1px;
-    -webkit-text-stroke-color: whitesmoke;
-    color: whitesmoke;
 
-    text-align: center;
-    margin-top: -10px;
-    font-size: 8em;
-    font-weight: 900;
-    font-family:   "Great Vibes", cursive;
-} */
-/* "Sevillana", */
 .barber {
     padding-left: 1em;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.card {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgb(198, 103, 103) 100%);
+    border: 1px solid rgb(78, 78, 78)
+}
+
+.barber_name {
+    background: yellow;
 }

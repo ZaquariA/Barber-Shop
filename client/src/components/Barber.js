@@ -15,7 +15,7 @@ function Barber() {
     <div class="barber">
       {barberList.map((barber) => (
         <div key={barber.id}>
-          <h2>{barber.name}</h2>
+          <h2 class="barber_name">{barber.name}</h2>
           <img src={barber.image} alt={barber.name} />
           <p>{barber.phone}</p>
           <p>{barber.email}</p>

@@ -31,6 +31,8 @@ if __name__ == '__main__':
         ]
 
         db.session.add_all(appointments)
+
+
         db.session.commit()
 
         print('Done seeding!..')

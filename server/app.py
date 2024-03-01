@@ -58,8 +58,23 @@ class BarberByID(Resource):
         return make_response(barber.to_dict(rules = ('-appointments',)), 200)
     
     def patch(self, id):
-
-        pass
+        barber = Barber.query.filter(Barber.id == id).first()
+        try:
+            get_json = request.get_json()
+            if barber:
+                for attr in get_json:
+                    setattr(barber, attr, get_json.get(attr))
+                    db.session.add(barber)
+                    db.session.commit()
+                    return make_response(barber.to_dict(rules = ('-appointments',)), 202)
+            else:
+                return  make_response({
+                    "error": "appointment not found"
+                }, 404)
+        except:
+            return make_response({
+                "errors": "validation errors"
+            }, 400)
 
     def delete(self, id):
         barber = Barber.query.filter(Barber.id == id).first()
@@ -105,7 +120,23 @@ class AppointmentByID(Resource):
         return make_response(appointment.to_dict(rules = ('-barber',)), 200)
     
     def patch(self, id):
-        pass
+        appointment = Appointment.query.filter(Appointment.id == id).first()
+        try:
+            get_json = request.get_json()
+            if appointment:
+                for attr in get_json:
+                    setattr(appointment, attr, get_json.get(attr))
+                    db.session.add(appointment)
+                    db.session.commit()
+                    return make_response(appointment.to_dict(rules = ('-barber',)), 202)
+            else:
+                return  make_response({
+                    "error": "appointment not found"
+                }, 404)
+        except:
+            return make_response({
+                "errors": "validation errors"
+            }, 400)
 
     def delete(self, id):
         appointment = Appointment.query.filter(Appointment.id == id).first()

@@ -58,3 +58,13 @@ class Appointment(db.Model, SerializerMixin):
             raise ValueError("Invalid time format. Please use the format 'H:MM' where H is between 1-12 and MM is between 00-59.")
         return time
     
+    class Customer(db.Model, SerializerMixin):
+        __tablename__ = 'customers'
+
+        id = db.Column(db.Integer, primary_key = True)
+        name = db.Column(db.String, nullable = False)
+        preferred_haircut = db.Column(db.String)
+        phone_number = db.Column(db.String)
+        email = db.Column(db.String)
+
+      

@@ -93,6 +93,8 @@ class Customer(db.Model, SerializerMixin):
         return email
     
     
+    
+    
 
 
 

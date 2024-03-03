@@ -99,6 +99,10 @@ class Haircut(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable = False)
     price = db.Column(db.Integer)
 
+    appointments = db.relationship('Appointment', back_populates = 'haircut')
+
+    serialize_rules = ('-appointments.haircut', )
+
     
 
     

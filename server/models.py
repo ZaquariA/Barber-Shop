@@ -67,4 +67,10 @@ class Appointment(db.Model, SerializerMixin):
         phone_number = db.Column(db.String)
         email = db.Column(db.String)
 
+        appointments = db.relationship('Appointment', back_populates = 'customer')
+
+        serialize_rules = ('-appointments.customer', )
+
+        
+
       

@@ -71,26 +71,32 @@ class Customer(db.Model, SerializerMixin):
 
     serialize_rules = ('-appointments.customer', )
     
-    @validates('name', 'preferred_haircut', 'phone_number', 'email')
+    @validates('name')
     def validate_name(self, key, name):
         if not name:
             raise ValueError('Name cannot be empty.')
         return name
     
-    def validate_haircut(self, key, preferred_haircut):
+    @validates('preferred_haircut')
+    def validate_preferred_haircut(self, key, preferred_haircut):
         if not preferred_haircut:
             raise ValueError('Please enter a preferred haircut.')
         return preferred_haircut
 
+    @validates('phone_number')
     def validate_phone_number(self, key, phone_number):
         if not re.match(r'^\d{3}-\d{3}-\d{4}$', phone_number):
             raise ValueError("Please enter a 10-digit phone number with hyphens (e.g., 123-456-7890).")
         return phone_number
     
+    @validates('email')
     def validate_email(self, key, email):
         if not re.match(r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$', email):
             raise ValueError("Please enter a valid email address")
         return email
+    
+    def __repr__(self):
+        return f'<Customer {self.id}>'
     
 class Haircut(db.Model, SerializerMixin):
     __tablename__ = 'haircuts'
@@ -102,6 +108,9 @@ class Haircut(db.Model, SerializerMixin):
     appointments = db.relationship('Appointment', back_populates = 'haircut')
 
     serialize_rules = ('-appointments.haircut', )
+
+    def __repr__(self):
+        return f'<Haircut {self.name}>'
 
     
 

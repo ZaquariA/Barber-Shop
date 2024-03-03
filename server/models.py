@@ -92,7 +92,22 @@ class Customer(db.Model, SerializerMixin):
             raise ValueError("Please enter a valid email address")
         return email
     
+class Haircut(db.Model, SerializerMixin):
+    __tablename__ = 'haircuts'
+
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String, nullable = False)
+    price = db.Column(db.Integer)
+
+    appointments = db.relationship('Appointment', back_populates = 'haircut')
+
+    serialize_rules = ('-appointments.haircut', )
+
     
+
+    
+    
+
     
     
 

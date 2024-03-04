@@ -43,14 +43,18 @@ class Appointment(db.Model, SerializerMixin):
     time = db.Column(db.String)
     hc_notes = db.Column(db.String)
     barber_id = db.Column(db.Integer, db.ForeignKey('barbers.id'))
-    # customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
-    # haircut_id = db.Column(db.Integer, db.ForeignKey('haircuts.id'))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
+    haircut_id = db.Column(db.Integer, db.ForeignKey('haircuts.id'))
 
     barber = db.relationship('Barber', back_populates = 'appointments')
-    # customer = db.relationship('Customer', back_populates = 'appointments')
-    # haircut = db.relationship('Haircut', back_populates = 'appointments')
+    customer = db.relationship('Customer', back_populates = 'appointments')
+    haircut = db.relationship('Haircut', back_populates = 'appointments')
 
-    serialize_rules = ('-barber.appointments',)
+    serialize_rules = ('-barber.appointments',
+                       '-customer.appointments',
+                       '-haircut.appointments',
+                       )
+
 
     @validates('time')
     def validate_time(self, key, time):

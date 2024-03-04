@@ -267,6 +267,40 @@ def haircuts():
 
     return response
 
+@app.route('/haircuts/<int:haircut_id>', methods = ['GET', 'PATCH', 'DELETE'])
+def haircut_by_id(haircut_id):
+    if request.method == 'GET':
+        haircut = Haircut.query.get(haircut_id == id).first()
+        if haircut:
+            response = make_response(
+                haircut.to_dict(),
+                200
+            )
+    elif request.method == 'PATCH':
+         try:
+            form_data = request.get_json()
+            for attr in form_data:
+                setattr(haircut, attr, form_data.get(attr))
+                db.session.add(haircut)
+                db.session.commit()
+                response = make_response(
+                    haircut.to_dict(),
+                    202
+                )
+
+         except ValueError:
+            response = make_response({
+                'errors': 'validation errors'}, 
+                400
+            )
+    
+
+    else:
+      response = make_response(
+                {"error": "Haircut not found"},
+                404
+            )
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

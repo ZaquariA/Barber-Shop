@@ -176,12 +176,32 @@ def customers():
                 new_customer.to_dict(), 
                 201
             )
-            
+
         except ValueError:
             response = make_response({
                 'errors': 'validation errors'}, 
                 400
         )
+
+    return response
+
+@app.route('/customers/<int:customer_id>', methods=['GET', 'PATCH', 'DELETE'])
+def customer_by_id(customer_id):
+    customer = Customer.query.get(customer_id == id).first()
+
+    if customer:
+        if request.method == 'GET':
+            response = make_response(
+                customer.to_dict(),
+                200
+            )
+             
+    else:
+        response = make_response(
+            {"error": "Customer not found"},
+            404
+        )
+    
 
     return response
 

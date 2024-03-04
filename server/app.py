@@ -25,39 +25,37 @@ api = Api(app)
 def index():
     return '<h1>Project Server</h1>'
 
-class Barbers(Resource):
-    def get(self):
-        barber_list = [barber.to_dict(rules = ('-appointments',)) for barber in Barber.query.all()]
+@app.route('/barbers', methods=['GET', 'POST'])
+def barbers():
+    if request.method == 'GET':
+        barber_list = [barber.to_dict(rules=('-appointments',)) for barber in Barber.query.all()]
         return make_response(barber_list, 200)
-    
-    def post(self):
+
+    elif request.method == 'POST':
         get_json = request.get_json()
         try:
             new_barber = Barber(
-                name = get_json['name'],
-                image = get_json['image'],
-                phone = get_json['phone'],
-                email = get_json['email']
+                name=get_json['name'],
+                image=get_json['image'],
+                phone=get_json['phone'],
+                email=get_json['email']
             )
             db.session.add(new_barber)
             db.session.commit()
             return make_response(new_barber.to_dict(), 201)
         except:
-            return make_response({
-                'errors': 'validation errors'
-            }, 400)
+            return make_response({'errors': 'validation errors'}, 400)
 
-    
-api.add_resource(Barbers, '/barbers')
-
-class BarberByID(Resource):
-
-
-    def get(self, id):
+@app.route('/barbers/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
+def barber_by_id(id):
+    if request.method == 'GET':
         barber = Barber.query.filter(Barber.id == id).first()
-        return make_response(barber.to_dict(rules = ('-appointments',)), 200)
-    
-    def patch(self, id):
+        if barber:
+            return make_response(barber.to_dict(rules=('-appointments',)), 200)
+        else:
+            return make_response({'error': 'Barber not found'}, 404)
+
+    elif request.method == 'PATCH':
         barber = Barber.query.filter(Barber.id == id).first()
         try:
             get_json = request.get_json()
@@ -66,60 +64,53 @@ class BarberByID(Resource):
                     setattr(barber, attr, get_json.get(attr))
                     db.session.add(barber)
                     db.session.commit()
-                    return make_response(barber.to_dict(rules = ('-appointments',)), 202)
+                    return make_response(barber.to_dict(rules=('-appointments',)), 202)
             else:
-                return  make_response({
-                    "error": "appointment not found"
-                }, 404)
+                return make_response({'error': 'Barber not found'}, 404)
         except:
-            return make_response({
-                "errors": "validation errors"
-            }, 400)
+            return make_response({'errors': 'validation errors'}, 400)
 
-    def delete(self, id):
+    elif request.method == 'DELETE':
         barber = Barber.query.filter(Barber.id == id).first()
         if barber:
             db.session.delete(barber)
             db.session.commit()
             return make_response({}, 204)
         else:
-            return make_response({
-                "error": "Barber not found"
-            }, 404)
+            return make_response({'error': 'Barber not found'}, 404)
+        
 
-
-    
-api.add_resource(BarberByID, '/barbers/<int:id>')
-
-class Appointments(Resource):
-    def get(self):
-        appointment_list = [appointment.to_dict(rules = ('-barber',)) for appointment in Appointment.query.all()]
+@app.route('/appointments', methods=['GET', 'POST'])
+def appointments():
+    if request.method == 'GET':
+        appointment_list = [appointment.to_dict(rules=('-barber',)) for appointment in Appointment.query.all()]
         return make_response(appointment_list, 200)
-    
-    def post(self):
+
+    elif request.method == 'POST':
         get_json = request.get_json()
         try:
             new_appointment = Appointment(
-                time = get_json['time'],
-                hc_notes = get_json['hc_notes'],
-                barber_id = get_json['barber_id']
+                time=get_json['time'],
+                hc_notes=get_json['hc_notes'],
+                barber_id=get_json['barber_id']
             )
             db.session.add(new_appointment)
             db.session.commit()
-            return make_response(new_appointment.to_dict(rules = ('-barber',)), 201)
+            return make_response(new_appointment.to_dict(rules=('-barber',)), 201)
         except:
-            return make_response({
-                'errors': 'validation errors'
-            }, 400)
-        
-api.add_resource(Appointments, '/appointments')
+            return make_response({'errors': 'validation errors'}, 400)
 
-class AppointmentByID(Resource):
-    def get(self, id):
+        
+@app.route('/appointments/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
+def appointment_by_id(id):
+    if request.method == 'GET':
         appointment = Appointment.query.filter(Appointment.id == id).first()
-        return make_response(appointment.to_dict(rules = ('-barber',)), 200)
-    
-    def patch(self, id):
+        if appointment:
+            return make_response(appointment.to_dict(rules=('-barber',)), 200)
+        else:
+            return make_response({'error': 'Appointment not found'}, 404)
+
+    elif request.method == 'PATCH':
         appointment = Appointment.query.filter(Appointment.id == id).first()
         try:
             get_json = request.get_json()
@@ -128,28 +119,20 @@ class AppointmentByID(Resource):
                     setattr(appointment, attr, get_json.get(attr))
                     db.session.add(appointment)
                     db.session.commit()
-                    return make_response(appointment.to_dict(rules = ('-barber',)), 202)
+                    return make_response(appointment.to_dict(rules=('-barber',)), 202)
             else:
-                return  make_response({
-                    "error": "appointment not found"
-                }, 404)
+                return make_response({'error': 'Appointment not found'}, 404)
         except:
-            return make_response({
-                "errors": "validation errors"
-            }, 400)
+            return make_response({'errors': 'validation errors'}, 400)
 
-    def delete(self, id):
+    elif request.method == 'DELETE':
         appointment = Appointment.query.filter(Appointment.id == id).first()
         if appointment:
             db.session.delete(appointment)
             db.session.commit()
             return make_response({}, 204)
         else:
-            return make_response({
-                'error': 'appointment not found'
-            }, 404)
-        
-api.add_resource(AppointmentByID, '/appointments/<int:id>')
+            return make_response({'error': 'Appointment not found'}, 404)
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

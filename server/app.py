@@ -218,8 +218,9 @@ def customer_by_id(customer_id):
                 db.session.delete(appointment)
             db.session.delete(customer)
             db.session.commit()
-            response = make_response({}, 
-            204
+            response = make_response(
+                {}, 
+                204
         )
                    
     else:
@@ -268,9 +269,9 @@ def haircuts():
     return response
 
 @app.route('/haircuts/<int:haircut_id>', methods = ['GET', 'PATCH', 'DELETE'])
-def haircut_by_id(haircut_id):
+def haircut_by_id(id):
     if request.method == 'GET':
-        haircut = Haircut.query.get(haircut_id == id).first()
+        haircut = Haircut.query.get(Haircut.id == id).first()
         if haircut:
             response = make_response(
                 haircut.to_dict(),
@@ -293,6 +294,16 @@ def haircut_by_id(haircut_id):
                 'errors': 'validation errors'}, 
                 400
             )
+    elif request.method == 'DELETE':
+        assoc_appointment = Appointment.query.filter(Appointment.haircut_id == haircut_id).all()
+        for appointment in assoc_appointment:
+            db.session.delete(appointment)
+        db.session.delete(haircut)
+        db.session.commit()
+        response = make_response(
+            {}, 
+            204
+        )
     
 
     else:
@@ -300,6 +311,8 @@ def haircut_by_id(haircut_id):
                 {"error": "Haircut not found"},
                 404
             )
+      
+    return response
 
 
 if __name__ == '__main__':

@@ -34,6 +34,7 @@ if __name__ == '__main__':
         ]
 
         db.session.add_all(appointments)
+
         print("Seeding haircuts...")
         haircuts = [
             Haircut(name = fake.name(),
@@ -49,6 +50,7 @@ if __name__ == '__main__':
         ]
         db.session.add_all(customers)
         print('Done seeding!..')
+
         db.session.commit()
 
         

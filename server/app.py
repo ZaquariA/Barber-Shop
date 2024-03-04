@@ -211,7 +211,17 @@ def customer_by_id(customer_id):
                 response = make_response({
                     'errors': 'validation errors'}, 
                     400
-                )        
+                )
+        elif request.method == 'DELETE':
+            assoc_appointment = Appointment.query.filter(Appointment.customer_id == customer_id).all()
+            for appointment in assoc_appointment:
+                db.session.delete(appointment)
+            db.session.delete(customer)
+            db.session.commit()
+            response = make_response({}, 
+            204
+        )
+                   
     else:
         response = make_response(
             {"error": "Customer not found"},
@@ -220,8 +230,6 @@ def customer_by_id(customer_id):
     
 
     return response
-
-
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

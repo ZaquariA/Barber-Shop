@@ -231,6 +231,25 @@ def customer_by_id(customer_id):
 
     return response
 
+@app.route('/haircuts', methods = ['GET', 'POST'])
+def haircuts():
+    if request.method == 'GET':
+        haircuts = Haircut.query.all()
+        haircuts_dict = [haircut.to_dict() for haircut in haircuts]
+        response = make_response(
+            haircuts_dict, 
+            200
+        )
+    
+    else:
+        response = make_response(
+            {"error": "Haircut not found"},
+            404
+        )
+
+    return response
+
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
 

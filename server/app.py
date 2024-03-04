@@ -240,7 +240,25 @@ def haircuts():
             haircuts_dict, 
             200
         )
-    
+    elif request.method == 'POST':
+        try:
+            form_data = request.get_json()
+            new_haircut = Haircut(
+                name = form_data['name'],
+                price = form_data['price']
+            )
+            db.session.add(new_haircut)
+            db.session.commit()
+            response = make_response(
+                new_haircut.to_dict(), 
+                201
+            )
+
+        except ValueError:
+            response = make_response({
+                'errors': 'validation errors'}, 
+                400
+        )
     else:
         response = make_response(
             {"error": "Haircut not found"},

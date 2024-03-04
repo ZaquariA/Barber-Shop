@@ -1,7 +1,7 @@
 from flask import Flask, request, make_response
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
-from models import db, Barber, Appointment
+from models import db, Barber, Appointment, Customer, Haircut
 import os
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -150,6 +150,42 @@ class AppointmentByID(Resource):
             }, 404)
         
 api.add_resource(AppointmentByID, '/appointments/<int:id>')
+
+
+@app.route('/customers', methods=['Get', 'POST'])
+def customers():
+    if request.method == 'GET':
+        customers = Customer.query.all()
+        customers_dict = [customers.to_dict(rules = ('-appointments', )) for customers in customers]
+        response = make_response(
+            customers_dict,
+            200
+        )
+    elif request.method == 'POST':
+        try:
+            form_data = request.get_json()
+            new_customer = Customer(
+                name = form_data['name'],
+                preferred_haircut = form_data['preferred_haircut'],
+                phone_number = form_data['phone_number'],
+                email = form_data['email']
+            )
+            db.session.add(new_customer)
+            db.session.commit()
+            response = make_response(
+                new_customer.to_dict(), 
+                201
+            )
+            
+        except ValueError:
+            response = make_response({
+                'errors': 'validation errors'}, 
+                400
+        )
+
+    return response
+
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

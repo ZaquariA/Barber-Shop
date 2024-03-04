@@ -36,31 +36,7 @@ class Barber(db.Model, SerializerMixin):
         return email
 
 
-class Appointment(db.Model, SerializerMixin):
-    __tablename__ = 'appointments'
 
-    id = db.Column(db.Integer, primary_key = True)
-    time = db.Column(db.String)
-    hc_notes = db.Column(db.String)
-    barber_id = db.Column(db.Integer, db.ForeignKey('barbers.id'))
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
-    haircut_id = db.Column(db.Integer, db.ForeignKey('haircuts.id'))
-
-    barber = db.relationship('Barber', back_populates = 'appointments')
-    customer = db.relationship('Customer', back_populates = 'appointments')
-    haircut = db.relationship('Haircut', back_populates = 'appointments')
-
-    serialize_rules = ('-barber.appointments',
-                       '-customer.appointments',
-                       '-haircut.appointments',
-                       )
-
-
-    @validates('time')
-    def validate_time(self, key, time):
-        if not re.match(r'^([1-9]|1[0-2]):[0-5][0-9]$', time):
-            raise ValueError("Invalid time format. Please use the format 'H:MM' where H is between 1-12 and MM is between 00-59.")
-        return time
     
 class Customer(db.Model, SerializerMixin):
     __tablename__ = 'customers'
@@ -112,6 +88,32 @@ class Haircut(db.Model, SerializerMixin):
     appointments = db.relationship('Appointment', back_populates = 'haircut')
 
     serialize_rules = ('-appointments.haircut', )
+
+class Appointment(db.Model, SerializerMixin):
+    __tablename__ = 'appointments'
+
+    id = db.Column(db.Integer, primary_key = True)
+    time = db.Column(db.String)
+    hc_notes = db.Column(db.String)
+    barber_id = db.Column(db.Integer, db.ForeignKey('barbers.id'))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
+    haircut_id = db.Column(db.Integer, db.ForeignKey('haircuts.id'))
+
+    barber = db.relationship('Barber', back_populates = 'appointments')
+    customer = db.relationship('Customer', back_populates = 'appointments')
+    haircut = db.relationship('Haircut', back_populates = 'appointments')
+
+    serialize_rules = ('-barber.appointments',
+                       '-customer.appointments',
+                       '-haircut.appointments',
+                       )
+
+
+    @validates('time')
+    def validate_time(self, key, time):
+        if not re.match(r'^([1-9]|1[0-2]):[0-5][0-9]$', time):
+            raise ValueError("Invalid time format. Please use the format 'H:MM' where H is between 1-12 and MM is between 00-59.")
+        return time
 
     def __repr__(self):
         return f'<Haircut {self.name}>'

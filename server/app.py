@@ -187,7 +187,7 @@ def customers():
 
 @app.route('/customers/<int:customer_id>', methods=['GET', 'PATCH', 'DELETE'])
 def customer_by_id(customer_id):
-    customer = Customer.query.get(customer_id == id).first()
+    customer = Customer.query.get(customer_id)
 
     if customer:
         if request.method == 'GET':
@@ -268,51 +268,38 @@ def haircuts():
 
     return response
 
-@app.route('/haircuts/<int:haircut_id>', methods = ['GET', 'PATCH', 'DELETE'])
-def haircut_by_id(id):
+@app.route('/haircuts/<int:haircut_id>', methods=['GET', 'PATCH', 'DELETE'])
+def haircut_id(haircut_id):
     if request.method == 'GET':
-        haircut = Haircut.query.get(Haircut.id == id).first()
+        haircut = Haircut.query.get(haircut_id)
         if haircut:
-            response = make_response(
-                haircut.to_dict(),
-                200
-            )
+            return make_response(haircut.to_dict(), 200)
+        else:
+            return make_response({"error": "Haircut not found"}, 404)
+    
     elif request.method == 'PATCH':
-         try:
+        try:
             form_data = request.get_json()
-            for attr in form_data:
-                setattr(haircut, attr, form_data.get(attr))
+            haircut = Haircut.query.get(haircut_id)
+            if haircut:
+                for attr in form_data:
+                    setattr(haircut, attr, form_data[attr])
                 db.session.add(haircut)
                 db.session.commit()
-                response = make_response(
-                    haircut.to_dict(),
-                    202
-                )
-
-         except ValueError:
-            response = make_response({
-                'errors': 'validation errors'}, 
-                400
-            )
-    elif request.method == 'DELETE':
-        assoc_appointment = Appointment.query.filter(Appointment.haircut_id == haircut_id).all()
-        for appointment in assoc_appointment:
-            db.session.delete(appointment)
-        db.session.delete(haircut)
-        db.session.commit()
-        response = make_response(
-            {}, 
-            204
-        )
+                return make_response(haircut.to_dict(), 202)
+            else:
+                return make_response({"error": "Haircut not found"}, 404)
+        except ValueError:
+            return make_response({"errors": "validation errors"}, 400)
     
-
-    else:
-      response = make_response(
-                {"error": "Haircut not found"},
-                404
-            )
-      
-    return response
+    elif request.method == 'DELETE':
+        haircut = Haircut.query.get(haircut_id)
+        if haircut:
+            db.session.delete(haircut)
+            db.session.commit()
+            return make_response({}, 204)
+        else:
+            return make_response({"error": "Haircut not found"}, 404)
 
 
 if __name__ == '__main__':

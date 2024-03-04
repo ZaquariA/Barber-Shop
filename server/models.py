@@ -50,7 +50,11 @@ class Appointment(db.Model, SerializerMixin):
     customer = db.relationship('Customer', back_populates = 'appointments')
     haircut = db.relationship('Haircut', back_populates = 'appointments')
 
-    serialize_rules = ('-barber.appointments',)
+    serialize_rules = ('-barber.appointments',
+                       '-customer.appointments',
+                       '-haircut.appointments',
+                       )
+
 
     @validates('time')
     def validate_time(self, key, time):

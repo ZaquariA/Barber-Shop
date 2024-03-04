@@ -273,7 +273,7 @@ def haircut_id(haircut_id):
     if request.method == 'GET':
         haircut = Haircut.query.get(haircut_id)
         if haircut:
-            return make_response(haircut.to_dict(), 200)
+            return make_response(haircut.to_dict(rules = ("-appointments", ) ), 200)
         else:
             return make_response({"error": "Haircut not found"}, 404)
     
@@ -286,7 +286,7 @@ def haircut_id(haircut_id):
                     setattr(haircut, attr, form_data[attr])
                 db.session.add(haircut)
                 db.session.commit()
-                return make_response(haircut.to_dict(), 202)
+                return make_response(haircut.to_dict(rules = ("-appointments", ) ), 202)
             else:
                 return make_response({"error": "Haircut not found"}, 404)
         except ValueError:

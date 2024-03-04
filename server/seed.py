@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, Barber, Appointment
+from models import db, Barber, Appointment, Customer, Haircut
 
 if __name__ == '__main__':
     fake = Faker()
@@ -27,15 +27,33 @@ if __name__ == '__main__':
         appointments = [
             Appointment(time = '2:15',
                         hc_notes = 'Make me look like a pineapple.',
-                        barber_id = 1)
+                        barber_id = 1,
+                        customer_id = 1,
+                        haircut_id = 1
+                        )
         ]
 
         db.session.add_all(appointments)
 
+        print("Seeding haircuts...")
+        haircuts = [
+            Haircut(name = fake.name(),
+                    price = randint(10, 100))
+        ]
+        db.session.add_all(haircuts)
+        print("Seeding customers...")
+        customers = [
+            Customer(name = fake.name(),
+                    preferred_haircut = fake.name(),
+                    phone_number = "123-456-7890",
+                    email = fake.email())
+        ]
+        db.session.add_all(customers)
+        print('Done seeding!..')
 
         db.session.commit()
 
-        print('Done seeding!..')
+        
         # Seed code goes here!
 
 

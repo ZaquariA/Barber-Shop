@@ -43,14 +43,18 @@ class Appointment(db.Model, SerializerMixin):
     time = db.Column(db.String)
     hc_notes = db.Column(db.String)
     barber_id = db.Column(db.Integer, db.ForeignKey('barbers.id'))
-    # customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
-    # haircut_id = db.Column(db.Integer, db.ForeignKey('haircuts.id'))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
+    haircut_id = db.Column(db.Integer, db.ForeignKey('haircuts.id'))
 
     barber = db.relationship('Barber', back_populates = 'appointments')
-    # customer = db.relationship('Customer', back_populates = 'appointments')
-    # haircut = db.relationship('Haircut', back_populates = 'appointments')
+    customer = db.relationship('Customer', back_populates = 'appointments')
+    haircut = db.relationship('Haircut', back_populates = 'appointments')
 
-    serialize_rules = ('-barber.appointments',)
+    serialize_rules = ('-barber.appointments',
+                       '-customer.appointments',
+                       '-haircut.appointments',
+                       )
+
 
     @validates('time')
     def validate_time(self, key, time):
@@ -58,3 +62,69 @@ class Appointment(db.Model, SerializerMixin):
             raise ValueError("Invalid time format. Please use the format 'H:MM' where H is between 1-12 and MM is between 00-59.")
         return time
     
+class Customer(db.Model, SerializerMixin):
+    __tablename__ = 'customers'
+
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String, nullable = False)
+    preferred_haircut = db.Column(db.String)
+    phone_number = db.Column(db.String)
+    email = db.Column(db.String)
+
+    appointments = db.relationship('Appointment', back_populates = 'customer')
+
+    serialize_rules = ('-appointments.customer', )
+    
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Name cannot be empty.')
+        return name
+    
+    @validates('preferred_haircut')
+    def validate_preferred_haircut(self, key, preferred_haircut):
+        if not preferred_haircut:
+            raise ValueError('Please enter a preferred haircut.')
+        return preferred_haircut
+
+    @validates('phone_number')
+    def validate_phone_number(self, key, phone_number):
+        if not re.match(r'^\d{3}-\d{3}-\d{4}$', phone_number):
+            raise ValueError("Please enter a 10-digit phone number with hyphens (e.g., 123-456-7890).")
+        return phone_number
+    
+    @validates('email')
+    def validate_email(self, key, email):
+        if not re.match(r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$', email):
+            raise ValueError("Please enter a valid email address")
+        return email
+    
+    def __repr__(self):
+        return f'<Customer {self.id}>'
+    
+class Haircut(db.Model, SerializerMixin):
+    __tablename__ = 'haircuts'
+
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String, nullable = False)
+    price = db.Column(db.Integer)
+
+    appointments = db.relationship('Appointment', back_populates = 'haircut')
+
+    serialize_rules = ('-appointments.haircut', )
+
+    def __repr__(self):
+        return f'<Haircut {self.name}>'
+
+    
+
+    
+    
+
+    
+    
+
+
+
+        
+      

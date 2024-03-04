@@ -195,7 +195,23 @@ def customer_by_id(customer_id):
                 customer.to_dict(),
                 200
             )
-             
+        elif request.method == 'PATCH':
+             try:
+                form_data = request.get_json()
+                for attr in form_data:
+                    setattr(customer, attr, form_data.get(attr))
+                    db.session.add(customer)
+                    db.session.commit()
+                    response = make_response(
+                        customer.to_dict(),
+                        202
+                    )
+
+             except ValueError:
+                response = make_response({
+                    'errors': 'validation errors'}, 
+                    400
+                )        
     else:
         response = make_response(
             {"error": "Customer not found"},

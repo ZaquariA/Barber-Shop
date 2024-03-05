@@ -4,6 +4,7 @@ import Header from "./Header"
 import Barber from './Barber'
 import MainPage from "./MainPage";
 import styles from "./react.css"
+import Customer from './Customer'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <MainPage />
       <Barber />
+      <Customer />
       
     </div>
   );

@@ -15,10 +15,13 @@ function Haircut() {
         <div key={haircut.id}>
           <h2>{haircut.name}</h2>
           <p>Price: ${haircut.price}</p>
+          <img src={haircut.image} alt={haircut.name} />
         </div>
       ))}
     </div>
   );
 }
+
+// 123
 
 export default Haircut;

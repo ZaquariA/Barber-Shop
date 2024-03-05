@@ -1,18 +1,37 @@
 .app_div {
-    background-image: url('https://cdn.discordapp.com/attachments/1214264641463656448/1214301739008663583/image.png?ex=65f89d9f&is=65e6289f&hm=2bfb48d220c5e73e02ea0dfcab8c78e77a6e1a966bec1f8267f3b135d8e22f23&');
+    background-image: url('https://cdn.discordapp.com/attachments/1212789264509566986/1214291365694017616/longshot-front-dark-cropped.png?ex=65f893f6&is=65e61ef6&hm=4e1a99a08c25ecf74cac16f1c61908afc5b5742cfcb46803fa4d200800917d4b&');
     margin: -.5em;
 }
 
-.title{
-    -webkit-text-stroke-width: .1px;
-    -webkit-text-stroke-color: black;
+.title {
+    text-align: center;
+    font-size: 8em;
+    font-family: "Neonderthaw", sans-serif;
+    animation: neonEffect 1s ease-in-out infinite alternate;
+  }
+  
+  @keyframes neonEffect {
+    0% {
+      color: #c42c87; /* Start color */
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 20px #ff00ff; /* Neon glow effect */
+    }
+    100% {
+      color: #25fee8; /* End color */
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00; /* Neon glow effect */
+    }
+  }
+/* .title{
+     -webkit-text-stroke-width: .1px;
+    -webkit-text-stroke-color: whitesmoke;
     color: whitesmoke;
+
     text-align: center;
     margin-top: -10px;
-    font-size: 6em;
-    font-family: "Bruno Ace SC", sans-serif;
-}
-
+    font-size: 8em;
+    font-weight: 900;
+    font-family:   "Great Vibes", cursive;
+} */
+/* "Sevillana", */
 .barber {
     padding-left: 1em;
 }

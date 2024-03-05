@@ -36,7 +36,7 @@ def barbers():
                 name=get_json['name'],
                 image=get_json['image'],
                 phone=get_json['phone'],
-                email=get_json['email']
+                email=get_json['email'],
             )
             db.session.add(new_barber)
             db.session.commit()
@@ -229,7 +229,8 @@ def haircuts():
             form_data = request.get_json()
             new_haircut = Haircut(
                 name = form_data['name'],
-                price = form_data['price']
+                price = form_data['price'],
+                image = form_data['image']
             )
             db.session.add(new_haircut)
             db.session.commit()

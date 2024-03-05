@@ -13,7 +13,8 @@ class Barber(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable = False)
     image = db.Column(db.String)
     phone = db.Column(db.String)
-    email = db.Column(db.String)
+    email = db.Column(db.String, nullable = True)
+    image = db.Column(db.String, nullable = True)
 
     appointments = db.relationship('Appointment', back_populates = 'barber')
 
@@ -84,6 +85,7 @@ class Haircut(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, nullable = False)
     price = db.Column(db.Integer)
+    image = db.Column(db.String)
 
     appointments = db.relationship('Appointment', back_populates = 'haircut')
 

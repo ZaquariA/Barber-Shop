@@ -18,7 +18,8 @@ if __name__ == '__main__':
             Barber(name="Tyler",
                    image="https://upload.wikimedia.org/wikipedia/commons/3/35/Basic_human_drawing.png",
                    phone="123-456-7890",
-                   email="notanemail@gmail.com")
+                   email="notanemail@gmail.com"
+                   )
         ]
         
         db.session.add_all(barbers)
@@ -38,7 +39,9 @@ if __name__ == '__main__':
         print("Seeding haircuts...")
         haircuts = [
             Haircut(name = fake.name(),
-                    price = randint(10, 100))
+                    price = randint(10, 100),
+                    image = fake.image_url()
+                    )
         ]
         db.session.add_all(haircuts)
         print("Seeding customers...")

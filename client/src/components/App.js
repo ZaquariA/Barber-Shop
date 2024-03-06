@@ -25,24 +25,24 @@ function App() {
     }, []);
 
 
-    return (
-      <div className="app_div">
-          <Header />
-          <Router>
-              <Switch>
-                  <Route exact path="/haircuts" component={Haircut} />
-                  <Route exact path="/barbers" component={Barber} />
-                  <Route exact path="/customers" component={Customer} />
-                  <Route exact path="/customerform" component={CustomerForm} />
-                  <Route exact path="/appointments" component={Appointment} />
-                  <Route exact path="/appointmentForm">
-                      <AppointmentForm barbers={barbers} haircuts={haircuts} />
-                  </Route>
-                  <Route path="/" component={MainPage} />
-              </Switch>
-          </Router>
-      </div>
-  );
+  return (
+        <div className="app_div">
+            <Header />
+            <Router>
+                <Switch>
+                    <Route exact path="/haircuts" component={Haircut} />
+                    <Route exact path="/barbers" component={Barber} />
+                    <Route exact path="/customers" component={Customer} />
+                    <Route exact path="/customerform" component={CustomerForm} />
+                    <Route exact path="/appointments" component={Appointment} />
+                    <Route exact path="/appointmentForm" component = {AppointmentForm}>
+                        <AppointmentForm barbers={barbers} haircuts={haircuts} />
+                    </Route>
+                    <Route path="/" component={MainPage} />
+                </Switch>
+            </Router>
+        </div>
+    );
 }
 
 export default App;

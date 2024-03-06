@@ -15,10 +15,33 @@ function AppointmentForm({ barbers, haircuts }) {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        try {
+            const response = await fetch('/appointments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'  // Set the Content-Type header to 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            if (response.ok) {
+                console.log('Appointment created successfully');
+                // Reset form data
+                setFormData({
+                    time: '',
+                    hc_notes: '',
+                    barber_id: '',
+                    haircut_id: ''
+                });
+            } else {
+                console.error('Failed to create appointment');
+            }
+        } catch (error) {
+            console.error('Error creating appointment:', error);
+        }
     };
+    
 
     return (
         <form className="appointment_form" onSubmit={handleSubmit}>

@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Header"
 import Barber from './Barber'
+import Haircut from './Haircut'
 import MainPage from "./MainPage";
 import styles from "./react.css"
 import Customer from './Customer'
+import CustomerForm from './CustomerForm'
 
 function App() {
   return (
     <div className="app_div">
       <Header />
-      <MainPage />
-      <Barber />
-      <Customer />
+      <Router>
+        <Switch>
+        <Route exact path="/haircuts" component={Haircut}/>
+        <Route exact path="/barbers" component={Barber}/>
+        <Route exact path="/customers" component={Customer} />
+        <Route exact path="/customerform" component={CustomerForm}/>
+        <Route path="/" component={MainPage}/>
+        </Switch>
+      </Router>
+      {/* <Barber />
+      <Customer /> */}
       
     </div>
   );

@@ -119,16 +119,3 @@ class Appointment(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Haircut {self.name}>'
-
-    
-
-    
-    
-
-    
-    
-
-
-
-        
-      

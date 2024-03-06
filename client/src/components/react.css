@@ -41,6 +41,8 @@ html, body {
     border: 1px solid rgb(78, 78, 78)
 }
 
-.barber_name {
-    background: yellow;
+.customer_form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }

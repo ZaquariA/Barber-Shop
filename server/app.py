@@ -149,7 +149,6 @@ def customers():
             form_data = request.get_json()
             new_customer = Customer(
                 name = form_data['name'],
-                preferred_haircut = form_data['preferred_haircut'],
                 phone_number = form_data['phone_number'],
                 email = form_data['email']
             )

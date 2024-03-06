@@ -16,7 +16,6 @@ function CustomerForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform form submission logic here
     console.log(formData);
   };
 

@@ -7,24 +7,41 @@ import MainPage from "./MainPage";
 import styles from "./react.css"
 import Customer from './Customer'
 import CustomerForm from './CustomerForm'
+import Appointment from './Appointment'
+import AppointmentForm from './AppointmentForm'
 
 function App() {
-  return (
-    <div className="app_div">
-      <Header />
-      <Router>
-        <Switch>
-        <Route exact path="/haircuts" component={Haircut}/>
-        <Route exact path="/barbers" component={Barber}/>
-        <Route exact path="/customers" component={Customer} />
-        <Route exact path="/customerform" component={CustomerForm}/>
-        <Route path="/" component={MainPage}/>
-        </Switch>
-      </Router>
-      {/* <Barber />
-      <Customer /> */}
-      
-    </div>
+    const [barbers, setBarbers] = useState([]);
+    const [haircuts, setHaircuts] = useState([]);
+
+    useEffect(() => {
+        fetch('/barbers')
+         .then(res => res.json())
+         .then(dataArr => setBarbers(dataArr));
+
+        fetch('/haircuts')
+         .then(res => res.json())
+         .then(dataArr => setHaircuts(dataArr));
+    }, []);
+
+
+    return (
+      <div className="app_div">
+          <Header />
+          <Router>
+              <Switch>
+                  <Route exact path="/haircuts" component={Haircut} />
+                  <Route exact path="/barbers" component={Barber} />
+                  <Route exact path="/customers" component={Customer} />
+                  <Route exact path="/customerform" component={CustomerForm} />
+                  <Route exact path="/appointments" component={Appointment} />
+                  <Route exact path="/appointmentForm">
+                      <AppointmentForm barbers={barbers} haircuts={haircuts} />
+                  </Route>
+                  <Route path="/" component={MainPage} />
+              </Switch>
+          </Router>
+      </div>
   );
 }
 

@@ -16,7 +16,6 @@ function Customer() {
                 return (
                     <div className="customer_div" key={customer.id}>
                         <h1 className="customer_name">{customer.name}</h1>
-                        <h1 className="customer_preferred_haircut">{customer.preferref_haircut}</h1>
                         <h1 className="customer_phone">{customer.phone}</h1>
                         <h1 className="customer_email">{customer.email}</h1>
                     </div>

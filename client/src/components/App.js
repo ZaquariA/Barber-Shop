@@ -13,6 +13,7 @@ import AppointmentForm from './AppointmentForm'
 function App() {
     const [barbers, setBarbers] = useState([]);
     const [haircuts, setHaircuts] = useState([]);
+    const [customers, setCustomers] = useState([])
 
     useEffect(() => {
         fetch('/barbers')
@@ -22,6 +23,10 @@ function App() {
         fetch('/haircuts')
          .then(res => res.json())
          .then(dataArr => setHaircuts(dataArr));
+
+        fetch('/customers')
+         .then(res => res.json())
+         .then(dataArr => setCustomers(dataArr)); 
     }, []);
 
 
@@ -36,7 +41,7 @@ function App() {
                     <Route exact path="/customerform" component={CustomerForm} />
                     <Route exact path="/appointments" component={Appointment} />
                     <Route exact path="/appointmentForm" component = {AppointmentForm}>
-                        <AppointmentForm barbers={barbers} haircuts={haircuts} />
+                        <AppointmentForm barbers={barbers} haircuts={haircuts} customers={customers} />
                     </Route>
                     <Route path="/" component={MainPage} />
                 </Switch>

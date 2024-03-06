@@ -57,4 +57,3 @@ function Appointment() {
 
 export default Appointment;
 
-// adding this for to force a commit.

@@ -98,7 +98,7 @@ def appointments():
             db.session.commit()
             return make_response(new_appointment.to_dict(rules=('-barber',)), 201)
         except:
-            return make_response({'errors': 'validation errors1'}, 400)
+            return make_response({'errors': 'validation errors'}, 400)
 
         
 @app.route('/appointments/<int:id>', methods=['GET', 'PATCH', 'DELETE'])

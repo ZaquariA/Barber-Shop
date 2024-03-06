@@ -20,7 +20,8 @@ function Appointment() {
       },
       body: JSON.stringify(data)
     })
-      .then(res => res.json());
+      .then(res => res.json())
+      .then(() => window.location.reload());
   };
 
   const handleDeleteAppointment = async (id) => {

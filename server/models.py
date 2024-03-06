@@ -44,7 +44,7 @@ class Customer(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, nullable = False)
-    phone_number = db.Column(db.String)
+    phone = db.Column(db.String)
     email = db.Column(db.String)
 
     appointments = db.relationship('Appointment', back_populates = 'customer')
@@ -56,18 +56,12 @@ class Customer(db.Model, SerializerMixin):
         if not name:
             raise ValueError('Name cannot be empty.')
         return name
-    
-    @validates('preferred_haircut')
-    def validate_preferred_haircut(self, key, preferred_haircut):
-        if not preferred_haircut:
-            raise ValueError('Please enter a preferred haircut.')
-        return preferred_haircut
 
-    @validates('phone_number')
-    def validate_phone_number(self, key, phone_number):
-        if not re.match(r'^\d{3}-\d{3}-\d{4}$', phone_number):
+    @validates('phone')
+    def validate_phone(self, key, phone):
+        if not re.match(r'^\d{3}-\d{3}-\d{4}$', phone):
             raise ValueError("Please enter a 10-digit phone number with hyphens (e.g., 123-456-7890).")
-        return phone_number
+        return phone
     
     @validates('email')
     def validate_email(self, key, email):

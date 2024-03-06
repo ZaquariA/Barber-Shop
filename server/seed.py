@@ -47,7 +47,7 @@ if __name__ == '__main__':
         print("Seeding customers...")
         customers = [
             Customer(name = fake.name(),
-                    phone_number = "123-456-7890",
+                    phone = "123-456-7890",
                     email = fake.email())
         ]
         db.session.add_all(customers)

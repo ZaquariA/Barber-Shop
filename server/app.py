@@ -149,7 +149,7 @@ def customers():
             form_data = request.get_json()
             new_customer = Customer(
                 name = form_data['name'],
-                phone_number = form_data['phone_number'],
+                phone = form_data['phone'],
                 email = form_data['email']
             )
             db.session.add(new_customer)

@@ -7,6 +7,7 @@ import MainPage from "./MainPage";
 import styles from "./react.css"
 import Customer from './Customer'
 import CustomerForm from './CustomerForm'
+import Appointment from './Appointment'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/barbers" component={Barber}/>
         <Route exact path="/customers" component={Customer} />
         <Route exact path="/customerform" component={CustomerForm}/>
+        <Route exact path="/appointments" component={Appointment}/>
         <Route path="/" component={MainPage}/>
         </Switch>
       </Router>

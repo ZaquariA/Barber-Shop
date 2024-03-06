@@ -47,7 +47,6 @@ if __name__ == '__main__':
         print("Seeding customers...")
         customers = [
             Customer(name = fake.name(),
-                    preferred_haircut = fake.name(),
                     phone_number = "123-456-7890",
                     email = fake.email())
         ]

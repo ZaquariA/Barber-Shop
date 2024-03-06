@@ -8,6 +8,7 @@ import styles from "./react.css"
 import Customer from './Customer'
 import CustomerForm from './CustomerForm'
 import Appointment from './Appointment'
+import AppointmentForm from './AppointmentForm'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/customers" component={Customer} />
         <Route exact path="/customerform" component={CustomerForm}/>
         <Route exact path="/appointments" component={Appointment}/>
+        <Route exact path="/appointmentForm" component={AppointmentForm}/>
         <Route path="/" component={MainPage}/>
         </Switch>
       </Router>

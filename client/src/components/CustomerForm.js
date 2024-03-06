@@ -4,7 +4,7 @@ function CustomerForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone_num: ''
+    phone: ''
   });
 
   const handleChange = (e) => {
@@ -16,7 +16,21 @@ function CustomerForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    fetch('/customers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -31,7 +45,7 @@ function CustomerForm() {
       </label>
       <label>
         Phone Number:
-        <input name="phone_num" value={formData.phone_num} onChange={handleChange} />
+        <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
       </label>
       <button type="submit">Submit</button>
     </form>

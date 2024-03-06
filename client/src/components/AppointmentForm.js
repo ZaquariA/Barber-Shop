@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-function AppointmentForm({ barbers, haircuts }) {
+function AppointmentForm({ barbers, haircuts, customers }) {
     const [formData, setFormData] = useState({
         time: '',
         hc_notes: '',
         barber_id: '',
+        customer_id: '',
         haircut_id: ''
     });
 
@@ -32,6 +33,7 @@ function AppointmentForm({ barbers, haircuts }) {
                     time: '',
                     hc_notes: '',
                     barber_id: '',
+                    customer_id: '',
                     haircut_id: ''
                 });
             } else {
@@ -59,6 +61,15 @@ function AppointmentForm({ barbers, haircuts }) {
                     <option value="">Select Barber</option>
                     {barbers.map(barber => (
                         <option key={barber.id} value={barber.id}>{barber.name}</option>
+                    ))}
+                </select>
+            </label>
+            <label>
+                Customer:
+                <select name="customer_id" value={formData.customer_id} onChange={handleChange}>
+                    <option value="">Select Customer</option>
+                    {customers.map(customer => (
+                        <option key={customer.id} value={customer.id}>{customer.name}</option>
                     ))}
                 </select>
             </label>

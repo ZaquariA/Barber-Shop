@@ -12,13 +12,17 @@ html, body {
     text-align: center;
     font-size: 8em;
     font-family: "Neonderthaw", sans-serif;
-    animation: neonEffect 2s ease-in-out infinite alternate;
+    animation: neonEffect 6s ease-in-out infinite alternate;
   }
   
   @keyframes neonEffect {
     0% {
       color: #c42c87; /* Start color */
       text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 20px #ff00ff; /* Neon glow effect */
+    }
+    50% {
+      color: pink;
+
     }
     100% {
       color: #25fee8; /* End color */

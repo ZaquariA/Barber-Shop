@@ -50,3 +50,9 @@ html, body {
   flex-direction: column;
   text-align: center;
 }
+
+.appointment_form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}

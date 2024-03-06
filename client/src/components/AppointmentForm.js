@@ -32,6 +32,7 @@ function AppointmentForm({ barbers, haircuts }) {
                     time: '',
                     hc_notes: '',
                     barber_id: '',
+                    customer_id: '',
                     haircut_id: ''
                 });
             } else {

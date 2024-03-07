@@ -17,16 +17,16 @@ html, body {
   
   @keyframes neonEffect {
     0% {
-      color: #c42c87; /* Start color */
-      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 20px #ff00ff; /* Neon glow effect */
+      color: #c42c87; 
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 20px #ff00ff; 
     }
     50% {
       color: pink;
 
     }
     100% {
-      color: #25fee8; /* End color */
-      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00; /* Neon glow effect */
+      color: #25fee8; 
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00; 
     }
   }
 
@@ -41,9 +41,10 @@ html, body {
 }
 
 .card {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgb(198, 103, 103) 100%);
-    border: 1px solid rgb(78, 78, 78)
-}
+    background: linear-gradient(to bottom, rgba(138, 135, 135, 0.8) 0%, rgb(0, 0, 0) 100%);
+    border: 10px groove rgb(27, 27, 27);
+    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00;}
+
 
 .customer_form {
   display: flex;

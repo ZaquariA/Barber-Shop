@@ -13,9 +13,9 @@ function Header() {
     <div className="header">
       <h1 className="title">
         <a href="http://localhost:3000/" style={{ textDecoration: 'none' }}>
-          Code Cuts
+        <span className="neon-text">Code Cuts</span>
         </a>
-        <span style={{ fontSize: '0.5em', display: 'block' }}>
+        <span id="subtitle" style={{ fontSize: '0.5em', display: 'block' }}>
           " Where FlatIron meets the Fade. "
         </span>
 

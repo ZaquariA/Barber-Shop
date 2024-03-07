@@ -13,15 +13,29 @@ function Appointment() {
   }, []);
 
   const handlePatchAppointment = async (id, data) => {
-    fetch(`/appointments/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(() => window.location.reload());
+    try {
+      const response = await fetch(`/appointments/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      if (response.ok) {
+        console.log('Appointment updated successfully');
+        setAppointmentList(appointmentList.map(appointment => {
+          if (appointment.id === id) {
+            return { ...appointment, ...data };
+          }
+          return appointment;
+        }));
+        setAppointmentToUpdate(null);
+      } else {
+        console.log('Failed to update appointment');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleDeleteAppointment = async (id) => {
@@ -34,7 +48,6 @@ function Appointment() {
       });
       if (response.ok) {
         console.log('Appointment deleted successfully');
-        // Update appointment list after deletion
         setAppointmentList(appointmentList.filter(appointment => appointment.id !== id));
       }
     } catch (error) {

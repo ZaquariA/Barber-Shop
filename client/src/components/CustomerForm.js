@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function CustomerForm() {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,6 +29,7 @@ function CustomerForm() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        history.push('/customers'); // Redirect to the Customer component
       })
       .catch((error) => {
         console.error(error);

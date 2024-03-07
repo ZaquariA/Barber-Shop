@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import deleteSound from "../Sound/rusty-blade-slice-5-186530.mp3"; // Assuming the Sound folder is located at the same level as the components folder
 
 function Customer() {
     const [customerList, setCustomerList] = useState([]);
@@ -6,6 +7,8 @@ function Customer() {
     const [newPhone, setNewPhone] = useState('');
     const [newEmail, setNewEmail] = useState('');
     const [customerToUpdate, setCustomerToUpdate] = useState(null);
+
+    const audio = new Audio(deleteSound);
 
     useEffect(() => {
         fetch('/customers')
@@ -22,6 +25,7 @@ function Customer() {
                 }
             });
             if (response.ok) {
+                audio.play();
                 console.log('Customer deleted successfully');
                 setCustomerList(customerList.filter(customer => customer.id !== id));
             }

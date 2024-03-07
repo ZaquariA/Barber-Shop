@@ -1,10 +1,12 @@
 html, body {
-  background-image: url('https://images-cdn.ubuy.co.in/634d06a9162ae7225245c1a3-ltlyh-7x5ft-black-brick-wall-backdrop.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  width: 100%;
-  padding: 0;
+    color:aqua;
+    background-image: url('https://images-cdn.ubuy.co.in/634d06a9162ae7225245c1a3-ltlyh-7x5ft-black-brick-wall-backdrop.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+
 }
 
 .title {
@@ -40,9 +42,9 @@ html, body {
 }
 
 .card {
-  background: linear-gradient(to bottom, rgba(138, 135, 135, 0.8) 0%, rgb(0, 0, 0) 100%);
-  border: 10px groove rgb(27, 27, 27);
-  box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00;
+    background: linear-gradient(to left, rgba(138, 135, 135, 0.8) 0%, rgb(0, 0, 0) 100%);
+    border: 10px groove rgb(27, 27, 27);
+    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00;}
 }
 
 .customer_form {
@@ -55,6 +57,20 @@ html, body {
   display: flex;
   flex-direction: column;
   text-align: center;
+}
+
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header_link {
+  text-decoration: none;
+}
+
+.haircut {
+  background: white;
 }
 
 /* Hamburger Menu Styles */
@@ -109,3 +125,4 @@ html, body {
   color: white;
   text-decoration: none;
 }
+

@@ -9,7 +9,7 @@ function Header() {
     document.querySelector('.menu').classList.toggle('menu_open');
   };
 
-  return (
+
     <div className="header">
       <h1 className="title">Code Cuts</h1>
       <div className="menu_icon" onClick={toggleMenu}>
@@ -40,6 +40,7 @@ function Header() {
           </li>
         </ul>
       </div>
+
     </div>
   );
 }

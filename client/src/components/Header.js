@@ -11,7 +11,15 @@ function Header() {
 
   return (
     <div className="header">
-      <h1 className="title">Code Cuts</h1>
+      <h1 className="title">
+        <a href="http://localhost:3000/" style={{ textDecoration: 'none' }}>
+          Code Cuts
+        </a>
+        <span style={{ fontSize: '0.5em', display: 'block' }}>
+          " Where FlatIron meets the Fade. "
+        </span>
+
+      </h1>
       <div className="menu_icon" onClick={toggleMenu}>
         <GiHamburgerMenu />
       </div>
@@ -37,9 +45,6 @@ function Header() {
           </li>
           <li>
             <a href="/appointmentForm">New Appointments</a>
-          </li>
-          <li>
-            <a href="http://localhost:3000/">Code Cuts</a>
           </li>
         </ul>
       </div>

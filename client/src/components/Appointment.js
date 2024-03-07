@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import deleteSound from '../Sound/rusty-blade-slice-5-186530.mp3';
 
 function Appointment() {
   const [appointmentList, setAppointmentList] = useState([]);
   const [newTime, setNewTime] = useState('');
   const [newNotes, setNewNotes] = useState('');
   const [appointmentToUpdate, setAppointmentToUpdate] = useState(null);
+
+  const audio = new Audio(deleteSound);
 
   useEffect(() => {
     fetch('/appointments')
@@ -47,6 +50,7 @@ function Appointment() {
         }
       });
       if (response.ok) {
+        audio.play();
         console.log('Appointment deleted successfully');
         setAppointmentList(appointmentList.filter(appointment => appointment.id !== id));
       }

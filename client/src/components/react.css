@@ -12,9 +12,18 @@ html, body {
 .title {
   margin-top: 0em;
   text-align: center;
-  font-size: 8em;
+  font-size: 9em;
   font-family: "Neonderthaw", sans-serif;
+}
+
+.neon-text {
   animation: neonEffect 6s ease-in-out infinite alternate;
+}
+
+#subtitle {
+  color: rgb(255, 255, 255);
+  background: linear-gradient(to left, rgba(31, 23, 23, 0.8) 80%, rgb(0, 0, 0) 100%);
+  border: 10px groove rgb(27, 27, 27);
 }
 
 @keyframes neonEffect {
@@ -46,6 +55,7 @@ html, body {
     border: 10px groove rgb(27, 27, 27);
     box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00;
 }
+
 
 .customer_form {
   display: flex;
@@ -125,4 +135,3 @@ html, body {
   color: white;
   text-decoration: none;
 }
-

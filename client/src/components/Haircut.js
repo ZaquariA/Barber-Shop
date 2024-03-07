@@ -28,10 +28,12 @@ function Haircut() {
   return (
     <div className="haircut">
       {haircutList.map(haircut => (
-        <div key={haircut.id}>
+        <div key={haircut} className="hair-card">
           <h2>{haircut.name}</h2>
+          <div className="image-container">
+            <img src={haircut.image} alt={haircut.name} />
+          </div>
           <p>Price: ${haircut.price}</p>
-          <img src={haircut.image} alt={haircut.name} />
           <button onClick={() => handleDeleteHaircut(haircut.id)}>Delete</button>
         </div>
       ))}

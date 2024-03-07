@@ -6,46 +6,46 @@ html, body {
     height: 100vh;
     width: 100%;
     padding: 0;
+
 }
 
 .title {
-    margin-top: 0em;
-    text-align: center;
-    font-size: 8em;
-    font-family: "Neonderthaw", sans-serif;
-    animation: neonEffect 6s ease-in-out infinite alternate;
-  }
-  
-  @keyframes neonEffect {
-    0% {
+  margin-top: 0em;
+  text-align: center;
+  font-size: 8em;
+  font-family: "Neonderthaw", sans-serif;
+  animation: neonEffect 6s ease-in-out infinite alternate;
+}
+
+@keyframes neonEffect {
+  0% {
       color: #c42c87; 
       text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 20px #ff00ff; 
-    }
-    50% {
+  }
+  50% {
       color: pink;
-
-    }
-    100% {
+  }
+  100% {
       color: #25fee8; 
       text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00; 
-    }
   }
+}
 
 .barber {
-    padding-left: 1em;
+  padding-left: 1em;
 }
 
 .cards {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .card {
     background: linear-gradient(to left, rgba(138, 135, 135, 0.8) 0%, rgb(0, 0, 0) 100%);
     border: 10px groove rgb(27, 27, 27);
     box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00;}
-
+}
 
 .customer_form {
   display: flex;
@@ -59,6 +59,7 @@ html, body {
   text-align: center;
 }
 
+
 .link {
   text-decoration: none;
   color: inherit;
@@ -71,3 +72,57 @@ html, body {
 .haircut {
   background: white;
 }
+
+/* Hamburger Menu Styles */
+.header {
+  position: relative; /* Make the header a positioned container for absolute positioning of the menu */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: transparent; /* Remove the black background */
+  color: white;
+}
+
+.title {
+  flex: 1; /* Allow the title to take up remaining space */
+  text-align: center; /* Center the title */
+}
+
+.menu_icon {
+  cursor: pointer;
+  position: absolute;
+  top: 10px; /* Adjust the distance from the top edge */
+  right: 20px; /* Adjust the distance from the right edge */
+}
+
+.menu {
+  position: absolute;
+  top: 50px; /* Adjust the distance from the top edge */
+  right: 20px; /* Adjust the distance from the right edge */
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: none;
+}
+
+.menu_open {
+  display: block;
+}
+
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu ul li {
+  padding: 5px 0;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+}
+

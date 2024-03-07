@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function AppointmentForm({ barbers, haircuts, customers }) {
+    const history = useHistory();
     const [formData, setFormData] = useState({
         time: '',
         hc_notes: '',
@@ -36,6 +38,8 @@ function AppointmentForm({ barbers, haircuts, customers }) {
                     customer_id: '',
                     haircut_id: ''
                 });
+                // Route back to the Appointment component
+                history.push('/appointments');
             } else {
                 console.error('Failed to create appointment');
             }

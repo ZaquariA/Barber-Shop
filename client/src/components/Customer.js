@@ -75,8 +75,8 @@ function Customer() {
                         <h1 className="customer_name">{customer.name}</h1>
                         <h1 className="customer_phone">{customer.phone}</h1>
                         <h1 className="customer_email">{customer.email}</h1>
-                        <button onClick={() => handleCustomerDelete(customer.id)}>Delete</button>
                         <button onClick={() => toggleForm(customer)}>Update</button>
+                        <button onClick={() => handleCustomerDelete(customer.id)}>Delete</button>               
                     </div>
                 )
             })}

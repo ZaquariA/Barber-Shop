@@ -76,8 +76,7 @@ function Appointment() {
           <div className="appointment_div" key={appointment.id}>
             <h1 className="appointment_time">{appointment.time}</h1>
             <h1 className="appointment_hc_notes">{appointment.hc_notes}</h1>
-            <h1 className="appointment_barber_name">{appointment.barber ? appointment.barber.name : 'No Barber Assigned'}</h1>
-            <h1 className="appointment_haircut_id">{appointment.haircut.name}</h1>
+            <h1 className="appointment_barber_name">{appointment.barber && appointment.barber.name ? appointment.barber.name : 'No Barber Assigned'}</h1>
             <button onClick={() => toggleForm(appointment)}>Update</button>
             <button onClick={() => handleDeleteAppointment(appointment.id)}>Delete</button>
           </div>

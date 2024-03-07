@@ -42,7 +42,7 @@ function Header() {
       </div>
 
     </div>
-  );
+ );
 }
 
 

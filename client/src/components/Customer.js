@@ -69,48 +69,41 @@ function Customer() {
 
     return (
         <div className="customer">
-            {customerList.map(customer => {
-                return (
-                    <div className="customer_div" key={customer.id}>
-                        <h1 className="customer_name">{customer.name}</h1>
-                        <h1 className="customer_phone">{customer.phone}</h1>
-                        <h1 className="customer_email">{customer.email}</h1>
-                        <button onClick={() => toggleForm(customer)}>Update</button>
-                        <button onClick={() => handleCustomerDelete(customer.id)}>Delete</button>               
-                    </div>
-                )
-            })}
-            {customerToUpdate && (
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        New Name:
-                        <input
-                            type="text"
-                            value={newName}
-                            onChange={(e) => setNewName(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        New Phone:
-                        <input
-                            type="text"
-                            value={newPhone}
-                            onChange={(e) => setNewPhone(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        New Email:
-                        <input
-                            type="text"
-                            value={newEmail}
-                            onChange={(e) => setNewEmail(e.target.value)}
-                        />
-                    </label>
-                    <button type="submit">Submit</button>
-                </form>
-            )}
+          <table className="customer-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {customerList.map((customer) => (
+                <tr key={customer.id}>
+                  <td>{customer.name}</td>
+                  <td>{customer.phone}</td>
+                  <td>{customer.email}</td>
+                  <td>
+                    <button onClick={() => toggleForm(customer)}>Update</button>
+                  </td>
+                  <td>
+                    <button onClick={() => handleCustomerDelete(customer.id)}>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {customerToUpdate && (
+            <form onSubmit={handleSubmit}>
+              {/* Form fields */}
+            </form>
+          )}
         </div>
-    )
-}
+      );
+    }
 
 export default Customer;

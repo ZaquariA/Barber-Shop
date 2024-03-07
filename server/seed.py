@@ -37,12 +37,30 @@ if __name__ == '__main__':
         db.session.add_all(appointments)
 
         print("Seeding haircuts...")
-        haircuts = [
-            Haircut(name = fake.name(),
-                    price = randint(10, 100),
-                    image = fake.image_url()
-                    )
+
+        haircuts_data = [
+            {
+                "name": "New York Slice",
+                "price": 50,
+                "image": "https://cdn.discordapp.com/attachments/1212789264509566986/1215414515089416193/image.png?ex=65fca9f9&is=65ea34f9&hm=6efadd9406bef04cf295c641c062f47b9b40f4a8014fb8ff82e30ebae0487ccf&"
+            },
+            {
+                "name": "A Little Off the Top",
+                "price": 20,
+                "image": "https://cdn.discordapp.com/attachments/1212789264509566986/1215414514753863690/wp-16001989765553425548261923989282.png?ex=65fca9f9&is=65ea34f9&hm=5b630c18850aa39bb44f736aa58615983638bcb2ffbf74056b6f66a1e29d383e&"
+            },
+            {
+                "name": "Checkers",
+                "price": 100,
+                "image": "https://cdn.discordapp.com/attachments/1212789264509566986/1215414514434969610/image.png?ex=65fca9f9&is=65ea34f9&hm=0490e9d5671b3beee33b83ad606dd7a2fd9568436bae8d851bb4ed5db116662c&"
+            },
         ]
+
+        haircuts = []
+        for data in haircuts_data:
+            haircut = Haircut(name=data["name"], price=data["price"], image=data["image"])
+            haircuts.append(haircut)
+
         db.session.add_all(haircuts)
         print("Seeding customers...")
         customers = [

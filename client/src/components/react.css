@@ -44,7 +44,7 @@ html, body {
 .card {
     background: linear-gradient(to left, rgba(138, 135, 135, 0.8) 0%, rgb(0, 0, 0) 100%);
     border: 10px groove rgb(27, 27, 27);
-    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00;}
+    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00;
 }
 
 .customer_form {

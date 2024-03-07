@@ -9,7 +9,7 @@ function Header() {
     document.querySelector('.menu').classList.toggle('menu_open');
   };
 
-
+  return (
     <div className="header">
       <h1 className="title">Code Cuts</h1>
       <div className="menu_icon" onClick={toggleMenu}>
@@ -36,14 +36,15 @@ function Header() {
             <a href="/appointments">Appointments</a>
           </li>
           <li>
-            <a href="/appointmentForm">New Appoitnments</a>
+            <a href="/appointmentForm">New Appointments</a>
+          </li>
+          <li>
+            <a href="http://localhost:3000/">Code Cuts</a>
           </li>
         </ul>
       </div>
-
     </div>
  );
 }
-
 
 export default Header;

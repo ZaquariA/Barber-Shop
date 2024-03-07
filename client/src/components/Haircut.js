@@ -39,6 +39,4 @@ function Haircut() {
   );
 }
 
-// 123
-
 export default Haircut;

@@ -1,5 +1,5 @@
 html, body {
-    color:aqua;
+    color:white;
     background-image: url('https://images-cdn.ubuy.co.in/634d06a9162ae7225245c1a3-ltlyh-7x5ft-black-brick-wall-backdrop.jpg');
     background-size: cover;
     background-position: center;
@@ -51,9 +51,15 @@ html, body {
 }
 
 .card {
-    background: linear-gradient(to left, rgba(138, 135, 135, 0.8) 0%, rgb(0, 0, 0) 100%);
-    border: 10px groove rgb(27, 27, 27);
-    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 20px #00ff00;
+  width: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to left, rgba(138, 135, 135, 0.8) 0%, rgb(0, 0, 0) 100%);
+  border: 10px groove rgb(27, 27, 27);
 }
 
 
@@ -163,4 +169,25 @@ html, body {
 .menu ul li a {
   color: white;
   text-decoration: none;
+}
+
+
+.customer-table {
+  border-collapse: collapse;
+  background: grey;
+  width: 100%;
+}
+
+.customer-table th,
+.customer-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.customer-table th {
+  background-color: #000000;
+}
+
+.customer-table td button {
+  margin-right: 5px;
 }

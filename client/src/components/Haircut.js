@@ -19,6 +19,7 @@ function Haircut() {
       });
       if (response.ok) {
         console.log('Haircut deleted successfully');
+        window.location.href = 'http://localhost:3000/haircuts';
       }
     } catch (error) {
       console.error(error);
@@ -28,7 +29,7 @@ function Haircut() {
   return (
     <div className="haircut">
       {haircutList.map(haircut => (
-        <div key={haircut} className="hair-card">
+        <div key={haircut.id} className="hair-card">
           <h2>{haircut.name}</h2>
           <div className="image-container">
             <img src={haircut.image} alt={haircut.name} />

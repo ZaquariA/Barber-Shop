@@ -228,9 +228,10 @@ html, body {
   height: 10vh; /* Use the full height of the viewport */
 }
 .customer_form button {
-  margin: 0 auto; /* Center the button horizontally */
+  margin: auto; /* Center the button horizontally */
   display: block; /* Ensure the button takes up full width */
 }
+
 
 .customer_form {
   display: flex;
@@ -274,5 +275,67 @@ html, body {
 .appointment_form button {
   margin-top: 10px; /* Add some top margin to the button */
   width: 30%;
+}
+
+.customer {
+  display: flex;
+  justify-content: center;
+}
+
+.customer-container {
+  width: 80%;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button {
+  margin-right: 5px;
+}
+
+.appointment {
+  display: flex;
+  justify-content: center;
+}
+
+.appointment-container {
+  width: 80%;
+  margin-top: 20px;
+  background-color: black;
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button {
+  margin-right: 5px;
 }
 

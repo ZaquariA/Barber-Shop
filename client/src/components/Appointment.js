@@ -75,40 +75,58 @@ function Appointment() {
 
   return (
     <div className="appointment">
-      {appointmentList.map(appointment => {
-        return (
-          <div className="appointment_div" key={appointment.id}>
-            <h1 className="appointment_time">{appointment.time}</h1>
-            <h1 className="appointment_hc_notes">{appointment.hc_notes}</h1>
-            <h1 className="appointment_barber_name">{appointment.barber && appointment.barber.name ? appointment.barber.name : 'No Barber Assigned'}</h1>
-            <button onClick={() => toggleForm(appointment)}>Update</button>
-            <button onClick={() => handleDeleteAppointment(appointment.id)}>Delete</button>
-          </div>
-        );
-      })}
-      {appointmentToUpdate && (
-        <form onSubmit={handleSubmit}>
-          <label>
-            New Time:
-            <input
-              type="text"
-              value={newTime}
-              onChange={(e) => setNewTime(e.target.value)}
-            />
-          </label>
-          <label>
-            New Notes:
-            <input
-              type="text"
-              value={newNotes}
-              onChange={(e) => setNewNotes(e.target.value)}
-            />
-          </label>
-          <button type="submit">Submit</button>
-        </form>
-      )}
+        <div className="appointment-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Notes</th>
+                        <th>Barber Name</th>
+                        <th>Customer Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {appointmentList.map(appointment => (
+                        <tr key={appointment.id}>
+                            <td>{appointment.time}</td>
+                            <td>{appointment.hc_notes}</td>
+                            <td>{appointment.barber && appointment.barber.name ? appointment.barber.name : 'No Barber Assigned'}</td>
+                            <td>{appointment.customer && appointment.customer.name ? appointment.customer.name : 'No Customer Assigned'}</td>
+                            <td>
+                                <button onClick={() => toggleForm(appointment)}>Update</button>
+                                <button onClick={() => handleDeleteAppointment(appointment.id)}>Delete</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            {appointmentToUpdate && (
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        New Time:
+                        <input
+                            type="text"
+                            value={newTime}
+                            onChange={(e) => setNewTime(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        New Notes:
+                        <input
+                            type="text"
+                            value={newNotes}
+                            onChange={(e) => setNewNotes(e.target.value)}
+                        />
+                    </label>
+                    <button type="submit">Submit</button>
+                </form>
+            )}
+        </div>
     </div>
-  );
+);
+
 }
 
 export default Appointment;
+

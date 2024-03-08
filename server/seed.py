@@ -14,13 +14,23 @@ if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
         print("Seeding barber...")
-        barbers = [
-            Barber(name="Tyler",
-                   image="https://upload.wikimedia.org/wikipedia/commons/3/35/Basic_human_drawing.png",
-                   phone="123-456-7890",
-                   email="notanemail@gmail.com"
-                   )
+        barber_data = [
+            {
+                "name": "Tyler",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/Basic_human_drawing.png",
+                "phone": "123-456-7890",
+                "email": "notanemail@gmail.com"
+            },
+            {
+                "name": "John",
+                "image": "https://example.com/john.png",
+                "phone": "987-654-3210",
+                "email": "john@example.com"
+            },
+            # Add more barber data as needed
         ]
+        
+        barbers = [Barber(name=data["name"], image=data["image"], phone=data["phone"], email=data["email"]) for data in barber_data]
         
         db.session.add_all(barbers)
 

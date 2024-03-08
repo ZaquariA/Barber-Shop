@@ -201,3 +201,41 @@ html, body {
 .customer-table td button {
   margin-right: 5px;
 }
+
+.customer_form {
+  width: 100%;
+}
+
+.customer_form table {
+  width: 100%;
+}
+
+.customer_form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.customer_form input {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; /* Use the full height of the viewport */
+}
+.customer_form button {
+  margin: 0 auto; /* Center the button horizontally */
+  display: block; /* Ensure the button takes up full width */
+}
+
+.customer_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

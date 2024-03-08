@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import './react.css'; // Import CSS file for styling
 
 function CustomerForm() {
   const history = useHistory();
@@ -37,21 +38,43 @@ function CustomerForm() {
   };
 
   return (
-    <form className="customer_form" onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" name="name" value={formData.name} onChange={handleChange} />
-      </label>
-      <label>
-        Email:
-        <input type="email" name="email" value={formData.email} onChange={handleChange} />
-      </label>
-      <label>
-        Phone Number:
-        <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <div className="center">
+      <form className="customer-form" onSubmit={handleSubmit}>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <label>Name:</label>
+              </td>
+              <td>
+                <input type="text" name="name" value={formData.name} onChange={handleChange} />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Email:</label>
+              </td>
+              <td>
+                <input type="email" name="email" value={formData.email} onChange={handleChange} />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Phone Number:</label>
+              </td>
+              <td>
+                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="2">
+                <button type="submit">Submit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
   );
 }
 

@@ -228,9 +228,10 @@ html, body {
   height: 10vh; /* Use the full height of the viewport */
 }
 .customer_form button {
-  margin: 0 auto; /* Center the button horizontally */
+  margin: auto; /* Center the button horizontally */
   display: block; /* Ensure the button takes up full width */
 }
+
 
 .customer_form {
   display: flex;

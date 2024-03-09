@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import deleteSound from '../Sound/rusty-blade-slice-5-186530.mp3';
+
+const audio = new Audio(deleteSound);
 
 function Customer() {
     const [customerList, setCustomerList] = useState([]);
@@ -14,21 +17,23 @@ function Customer() {
     }, []);
 
     const handleCustomerDelete = async (id) => {
-        try {
-            const response = await fetch(`/customers/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            if (response.ok) {
-                console.log('Customer deleted successfully');
-                setCustomerList(customerList.filter(customer => customer.id !== id));
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
+      try {
+          const response = await fetch(`/customers/${id}`, {
+              method: 'DELETE',
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          });
+          if (response.ok) {
+              audio.play();
+              console.log('Customer deleted successfully');
+              setCustomerList(customerList.filter(customer => customer.id !== id));
+          }
+      } catch (error) {
+          console.error(error);
+      }
+  };
+  
 
     const toggleForm = (customer) => {
         setNewName(customer.name);

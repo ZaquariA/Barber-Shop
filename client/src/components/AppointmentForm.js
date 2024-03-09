@@ -24,7 +24,7 @@ function AppointmentForm({ barbers, haircuts, customers }) {
             const response = await fetch('/appointments', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'  // Set the Content-Type header to 'application/json'
+                    'Content-Type': 'application/json'  
                 },
                 body: JSON.stringify(formData)
             });
